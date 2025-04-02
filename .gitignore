@@ -1,0 +1,6 @@
+*
+!/.gitignore
+!/requirements.txt
+!/lib_ts.py
+!/ts_kagglehub.py
+!README.md
