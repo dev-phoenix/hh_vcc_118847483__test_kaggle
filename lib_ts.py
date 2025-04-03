@@ -4,6 +4,7 @@ import os
 import kagglehub
 import shutil
 import csv
+from pathlib import Path
 
 
 class TsLib:
@@ -22,6 +23,12 @@ class TsLib:
 
 
     def loadSouceFile(self):
+
+        if not os.path.exists('src'):
+            print('Dir \'src\' not exists. Creating ...')
+            # os.makedirs('./src')
+            Path('src').mkdir()
+            print('Created.')
             
         # KAGGLE_CONFIG_DIR='./.kaggle'
         # Download latest version
@@ -42,7 +49,7 @@ class TsLib:
         if from_ex and not dest_ex:
             shutil.copy(pfrom, pdest)
 
-    
+
 
     def addTestData(self,pdest,dest,cou=10):
         '''
@@ -52,16 +59,9 @@ class TsLib:
         '''
         with open(pdest, newline='') as f:
             reader = csv.reader(f)
-            c=cou # 10
-            # for row in reader:
-            #     if c<0: break
-            #     c-=1
-            #     print(row)
-            
-            # t1 = './src/data_some.csv'
+            c=cou 
             with open(dest, 'w', newline='') as f:
                 writer = csv.writer(f)
-                # writer.writerows(someiterable)
                 for row in reader:
                     if c<0: break
                     c-=1

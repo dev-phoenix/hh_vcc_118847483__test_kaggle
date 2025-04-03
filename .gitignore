@@ -1,6 +1,16 @@
-*
+*.*
+.*
+_*
+req
+pjs
+pdu
+/offload/*
+!/src/freelancer_earnings_bd_test.csv
 !/.gitignore
 !/requirements.txt
+!/history.md
 !/lib_ts.py
+!/lib_llm__torch.py
+!/lib_llm__langch.py
 !/ts_kagglehub.py
 !README.md
