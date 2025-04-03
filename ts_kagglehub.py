@@ -48,7 +48,7 @@ if not dest_ex: # load test data from kagglehub
         tst.addTestData(pdest, ptest, 10)
 
     data_ex = os.path.isfile(ptest)
-    if not dest_ex:
+    if not data_ex:
         exit('test source data not exists')
     else:
         print('test source data is exists')
