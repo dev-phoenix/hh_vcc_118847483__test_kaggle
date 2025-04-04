@@ -7,8 +7,8 @@ import shutil
 import csv
 from lib_ts import TsLib
 
-import lib_llm__torch # fail to load torch. Library torch needed 795Mb. too little memory
-import lib_llm__langch # try langchain
+# import lib_llm__torch # fail to load torch. Library torch needed 795Mb. too little memory
+# import lib_llm__langch # try langchain
 
 
 # kagglehub.login()
@@ -26,9 +26,11 @@ dest_ex = os.path.isfile(pdest)
 #
 ptest = pdest.split('.')[0]+'_test.'+pdest.split('.')[1] # path destination
 data_ex = os.path.isfile(ptest)
+tst = TsLib(src_dir_path,fn)
+tst.testFilePath = ptest
+tst.fullFilePath = pdest
 if not dest_ex: # load test data from kagglehub
 
-    tst = TsLib(src_dir_path,fn)
 
     if not dest_ex:
         tst.loadSouceFile()
@@ -58,6 +60,7 @@ if not dest_ex: # load test data from kagglehub
 #
 # Test LLM Libraries
 #
+tst.dialog()
 way = 2 # select to langchain version
 # way = 1 # select to torch version
 way = 3 # select to nothing
