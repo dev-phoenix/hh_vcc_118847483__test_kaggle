@@ -1,6 +1,8 @@
 # test project with LLM and data from kagglehub
 
-## [REPORT >>](report_0.md)
+## [Отчёт >>](report_0.md)
+
+
 
 ## project not completed because have hardware sources not enough
 
