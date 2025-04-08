@@ -12,6 +12,7 @@ pdu
 !/lib_ts.py
 !/lib_llm__torch.py
 !/lib_llm__langch.py
+!/lib_model_names.py
 !/ts_kagglehub.py
 !README.md
 !report*
