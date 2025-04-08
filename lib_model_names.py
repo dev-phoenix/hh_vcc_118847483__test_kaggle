@@ -17,6 +17,7 @@ def selectModelName(mod_num=-1, getinfo=False, with_result=False):
     its hase not 'case' or multiprocessor
     '''
     defmodel = 17
+    defmodel = 15 # сайг мистраль лора 7 миллиардов
     if mod_num == -1:
         mod_num = defmodel
 
