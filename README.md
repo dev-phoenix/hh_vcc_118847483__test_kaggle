@@ -2,7 +2,7 @@
 
 ## [REPORT >>](report_0.md)
 
-## project not completed because have hardware souces not enough
+## project not completed because have hardware sources not enough
 
 ### to start:
 ```sh
