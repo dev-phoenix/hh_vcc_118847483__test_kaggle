@@ -1,4 +1,10 @@
 # lib_ts
+'''
+Main script
+work with kaggle data
+as loading and output precalculated statustic by console menu choices.
+No LLM helped.
+'''
 
 import os
 import kagglehub
@@ -22,7 +28,7 @@ class TsLib:
             src_dir_path = os.path.dirname(os.path.realpath(__file__))+'/src'
         self.src_dir_path = src_dir_path
         self.fn = fn
-        self.src_dir_path = src_dir_path+fn
+        # self.src_dir_path = src_dir_path+fn
 
 
     def loadSouceFile(self):
@@ -42,12 +48,15 @@ class TsLib:
         # p = 'Path to dataset files: /home/eagle/.cache/kagglehub/datasets/shohinurpervezshohan/freelancer-earnings-and-job-trends/versions/1'
 
         pfrom = path+self.fn # path from
+        # pfrom = path # path from
         pdest = self.src_dir_path+self.fn # path destination
 
         from_ex = os.path.isfile(pfrom)
         dest_ex = os.path.isfile(pdest)
-        # print(from_ex)
-        # print(dest_ex)
+        print(pfrom)
+        print(from_ex)
+        print(pdest)
+        print(dest_ex)
 
         if from_ex and not dest_ex:
             shutil.copy(pfrom, pdest)
@@ -149,7 +158,14 @@ class TsLib:
 
 
     q = None
+    toexit = 3
     def dialog(self,qnum=False):
+        # exit with several empty choices
+        if qnum == '' or qnum == False: self.toexit -= 1
+        else: self.toexit = 3
+        if self.toexit < 0: return
+
+        # main dialog circle
         if not self.q:
             self.q = Questions()
             self.loadData()
@@ -159,7 +175,7 @@ class TsLib:
                 print()
                 print('='*10)
                 for n,q in qs.questions():
-                    print(str(n)+':',q)
+                    print(str(n)+'.',q)
             mes=f"Выберите вопрос [{self.q.min} - {self.q.max}]:\n"
             try:
                 self.dialog(input(mes))
@@ -176,17 +192,22 @@ class TsLib:
             qnum = int(qnum)
         except:
             self.dialog()
-        if int(qnum) < self.q.min or int(qnum) > self.q.max:
+        # check limits
+        if ( int(qnum) < self.q.min or int(qnum) > self.q.max )and int(qnum) != 9:
             # mes=f"Выберите вопрос [{self.q.min} - {self.q.max}]:\n"
             # print(mes)
             # print(qnum)
             self.dialog()
             return
+        
+        # check choice exists
         method = f'getRes_{qnum}'
         if hasattr(self, method) and callable(getattr(self, method)):
             print()
             print('>'*5)
             getattr(self, method)()
+        
+        # repit dialog wheel
         self.dialog()
         return
 
@@ -230,6 +251,11 @@ class TsLib:
 
 
     def getRes_9(self):
+        '''
+        by execple on kagglehub
+        no in choices
+        '''
+        print('wait ...')
         import pandas as pd
         import matplotlib.pyplot as plt
         import seaborn as sns
@@ -286,4 +312,8 @@ This comprehensive dataset tracks freelancer earnings and job trends across mult
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         ...
-        
+    
+
+
+if __name__ == '__main__':
+    ...

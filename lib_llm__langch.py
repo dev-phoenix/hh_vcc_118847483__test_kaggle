@@ -1,5 +1,9 @@
 # lib_llm__langch
 # langchain
+'''
+based on article:
+source: https://habr.com/ru/articles/775870/
+'''
 
 from langchain.schema import StrOutputParser
 from langchain.schema.runnable import RunnablePassthrough
@@ -28,6 +32,9 @@ MODEL_NAME='Defetya/qwen-4B-saiga'
 MODEL_NAME='sentence-transformers/distiluse-base-multilingual-cased'
 repo_id='lmsys/vicuna-13b-v1.5-16k'
 
+
+# fail: it is needed open_ai_key
+# ... in some times
 def test_llm__langch():
     
 
@@ -45,7 +52,7 @@ def test_llm__langch():
     print('='*30, 'HuggingFaceEmbeddings ...')
     # Переводим части документа в эмбединги и помещаем в хранилище
     embedding = HuggingFaceEmbeddings(
-        model_name='sentence-transformers/distiluse-base-multilingual-cased',
+        model_name=MODEL_NAME,
         # model_kwargs={'device':'cuda:0'},
         model_kwargs={'device':'cpu'},
         encode_kwargs={'normalize_embeddings': False}
@@ -58,7 +65,7 @@ def test_llm__langch():
     print('='*30, 'HuggingFaceHub ...')
     # Подгружаем LLM с HF
     # llm = HuggingFaceHub(repo_id='lmsys/vicuna-13b-v1.5-16k')
-    llm = HuggingFaceHub(repo_id='lmsys/vicuna-13b-v1.5-16k')
+    llm = HuggingFaceHub(repo_id=repo_id)
 
     # Формируем шаблон запроса к llm
     template = """Используй следующие фрагменты контекста, чтобы в конце ответить на вопрос.

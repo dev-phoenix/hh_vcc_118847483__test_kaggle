@@ -1,5 +1,7 @@
 # test project with LLM and data from kagglehub
 
+## [REPORT >>](report_0.md)
+
 ## project not completed because have hardware souces not enough
 
 ### to start:
